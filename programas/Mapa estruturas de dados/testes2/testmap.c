@@ -116,8 +116,10 @@ void menu_mostrar() {
 }
 
 int main() {
+    int i;
     int op =1;
     int n;
+    
 
     while (op !=0){
     menu_mostrar();
@@ -179,7 +181,9 @@ int main() {
     printf("\n\n");
             break;
         case 2:
+            for (i=0;i<n;i++){
             dequeue(queueCopy);
+        }
             break;
         case 3:
         printf("Fila original:\n");
