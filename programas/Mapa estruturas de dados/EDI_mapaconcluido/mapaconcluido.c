@@ -1,3 +1,17 @@
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//                      CURSO: BACHARELADO EM ENGENHARIA DE SOFTWARE                             //
+//                                                                                               //
+// Mapa de Estrutura de Dados I                                                                 //
+//                                                                                               //
+// Programador: Mateus Allebrand                                                                 //
+//                                                                                               //
+// Login: 22214027-5                                                                             //
+//                                                                                               //
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//OBS.: PARA NÂO HAVER ERRO => as letras das nucleotides devem ser escritas em Letras maiúsculas //
+//      Maneira correta => ACGT       //        Maneira errada =>acgt //                         //
+//      Grato!!                                                                                  //
+///////////////////////////////////////////////////////////////////////////////////////////////////
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -106,14 +120,17 @@ void printStack(Stack* stack) {
 
 
 void menu_mostrar() {
-    printf("Escolha uma opcao:\n");
-    printf("[1] => Inserir na fila \n");
-    printf("[2] => Excluir da fila\n");
-    printf("[3] => Mostrar fila \n");
-    printf("[4] => mostrar pilha\n");
-    printf("[5] => excluir da pilha\n");
-    printf("[0] => Sair\n");
+    printf("=======================================");
+    printf("\n   -=-=-=-=-= => MENU <= =-=-=-=-=-=\n");
+    printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n");
+    printf("      [1] => Inserir na fila \n");
+    printf("      [2] => Excluir da fila\n");
+    printf("      [3] => Mostrar fila \n");
+    printf("      [4] => Mostrar pilha\n");
+    printf("      [5] => Excluir da pilha\n");
+    printf("      [0] => Sair\n");
     printf("\n");
+    printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
 }
 
 int main() {
@@ -123,7 +140,7 @@ int main() {
     
     Queue* queue = createQueue();
     Stack* stack = createStack();
-
+    Queue* queueCopy = createQueue();
     while (op !=0){
     menu_mostrar();
     scanf("%D",&op);
@@ -138,16 +155,12 @@ int main() {
             char nucleotide;
             scanf(" %c", &nucleotide);
             enqueue(queue, nucleotide);
-            
+            enqueue(queueCopy, nucleotide); // Adicionar à queueCopy
+
         }
         
-        // Criar uma cópia da fila original
-        Queue* queueCopy = createQueue();
-        Node* current = queue->front;
-        while (current != NULL) {
-            enqueue(queueCopy, current->nucleotide);
-            current = current->next;
-        }
+
+
 
     // Passar a fila original para a pilha
     while (queue->front != NULL) {
@@ -171,10 +184,11 @@ int main() {
         }
     }
     printf("\nOBS.:Removemos para a dupla fita do DNA e convertemos a sequencia de nucleotideos.\n");
-    printf("\n============ Resultado! ============\n");
+    printf("\n============ # RESULTADO # ============\n\n");
     // Imprimir a fila original e a pilha
     printf("Fila original:\n");
     printQueue(queueCopy);
+    printf("\n");
     printf("Dupla fita do DNA:\n");
     printStack(stack);
     printf("\n\n");
@@ -183,23 +197,31 @@ int main() {
             for (i=0;i<n;i++){
             dequeue(queueCopy);
         }
+            printf("\nConteudo da Fila: \n\n");
             printQueue(queueCopy);
             printf("\n\n");
             break;
         case 3://Mostrar fila
-        printf("Fila original:\n");
+        printf("\nConteudo da Fila: \n\n");
         printQueue(queueCopy);
+        printf("\n");
         break;
         
         case 4: //Mostrar pilha
+        printf("\n");
+        printf("\nConteudo da Pilha: \n\n");
         printStack(stack);
+        printf("\n");
         break;
 
         case 5: //excluir da  pilha
          for (i=0;i<n;i++){
             dequeue(stack);
         }
+        printf("\n");
+        printf("\nConteudo da Pilha: \n\n");
         printStack(stack);
+        printf("\n");
         break;
 
         default:
@@ -209,6 +231,6 @@ int main() {
         
 
         }
-
+    printf("\n      ========== FIM! ========== \n\n");
     return 0;
 }
